@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#HEC_HOST=https://cloud.humio.com
+HEC_HOST=http://humio.example.org:8080
+
+# DEFAULT ingest token for repo where data should end up
+INGEST_TOKEN=abc
+
+# name of host generating the metrics
+# Using HOST=$(hostname -f) the metrics collector will figure out the hostname itself
+# Alternatively, hard code the host name with something like HOST=host.example.org
+#HOST=$(hostname -f)
+#HOST=host.example.org
+HOST=$(hostname -f)
