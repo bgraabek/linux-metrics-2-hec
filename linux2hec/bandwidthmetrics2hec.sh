@@ -20,6 +20,4 @@ sed '/^$/d' | \
 sed "s/^/$HOST /g" | \
 sed -r 's/[[:blank:]]+/,/g' | \
 awk -F"," '{print "{\"host\":\""$1"\", \"source\":\"linux_bandwidth\", \"fields\":{\"#category\":\"linux_metrics\", \"interface\":\""$3"\", \"rxpckPs\":"$4", \"txpckPs\":"$5", \"rxkBPs\":"$6", \"txkBPs\":"$7", \"rxMulticastPs\":"$10", \"pctIfUtil\":"$11"}}"}' | \
-while read line; do \
-  /usr/bin/curl $HEC_HOST/api/v1/ingest/hec -X POST -H "Content-Type: text/plain; charset=utf-8" -H "Authorization: Bearer $INGEST_TOKEN" --data "$line"; \
-done
+/usr/bin/curl $HEC_HOST/api/v1/ingest/hec -X POST -H "Content-Type: text/plain; charset=utf-8" -H "Authorization: Bearer $INGEST_TOKEN" --data-binary @-
